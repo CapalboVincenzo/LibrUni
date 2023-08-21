@@ -6,16 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StudenteService {
+public class StudentService {
     private final StudenteRepository studenteRepository;
 
     @Autowired
-    public StudenteService(StudenteRepository studenteRepository) {
+    public StudentService(StudenteRepository studenteRepository) {
         this.studenteRepository = studenteRepository;
     }
 
-    public Studente createStudente(String nome, String cognome) {
-        Studente studente = new Studente();
+    public Student createStudente(String nome, String cognome) {
+        Student studente = new Student();
         studente.setNome(nome);
         studente.setCognome(cognome);
         return studenteRepository.save(studente);
@@ -25,11 +25,11 @@ public class StudenteService {
         return studenteRepository.existsById(studenteId);
     }
 
-    public Studente getStudenteById(Integer studenteId) {
+    public Student getStudenteById(Integer studenteId) {
         return studenteRepository.findById(studenteId)
                 .orElseThrow(() -> new IllegalArgumentException("Studente non trovato con ID: " + studenteId));
     }
-public List<Studente>getAllStudente(){
+public List<Student>getAllStudente(){
 	return studenteRepository.findAll();
 			}
 }

@@ -1,30 +1,28 @@
 package com.example.demo;
 
-import java.util.Date;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EsameService {
-    private final EsameRepository esameRepository;
+public class ExamService {
+    private final ExamRepository esameRepository;
     private final LibrettoService librettoService;
-    private final StudenteService studenteService;
+    private final StudentService studenteService;
 
     @Autowired
-    public EsameService(EsameRepository esameRepository, LibrettoService librettoService, StudenteService studenteService) {
+    public ExamService(ExamRepository esameRepository, LibrettoService librettoService, StudentService studenteService) {
         this.esameRepository = esameRepository;
         this.librettoService = librettoService;
         this.studenteService = studenteService;
     }
 
-    public Esame createEsame(Integer librettoId, String materia, int voto) {
+    public Exam createEsame(Integer librettoId, String materia, int voto) {
         if (librettoService.verificaLibrettoEsistente(librettoId)) {
             Libretto libretto = librettoService.getLibrettoById(librettoId);
-            Studente studente = libretto.getStudente();
+            Student studente = libretto.getStudente();
             if (studente != null && studenteService.verificaStudenteEsistente(studente.getId())) {
-                Esame esame = new Esame();
+                Exam esame = new Exam();
                 esame.setMateria(materia);
                 esame.setVoto(voto);
                 esame.setLibretto(libretto);
@@ -37,11 +35,11 @@ public class EsameService {
         }
     }
     
-    public List<Esame> getAllEsami() {
+    public List<Exam> getAllEsami() {
         return esameRepository.findAll();
     }
 
-    public Esame getEsameById(Integer esameId) {
+    public Exam getEsameById(Integer esameId) {
         return esameRepository.findById(esameId)
                 .orElseThrow(() -> new IllegalArgumentException("Esame non trovato con ID: " + esameId));
     }

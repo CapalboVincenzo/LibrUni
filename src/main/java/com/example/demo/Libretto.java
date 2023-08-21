@@ -13,9 +13,7 @@ public class Libretto {
     private Integer id;
 
     @OneToOne
-    private Studente studente;
-
-    // Costruttori, getter e setter
+    private Student studente;
 
     public Integer getId() {
         return id;
@@ -25,11 +23,11 @@ public class Libretto {
         this.id = id;
     }
 
-    public Studente getStudente() {
+    public Student getStudente() {
         return studente;
     }
 
-    public void setStudente(Studente studente) {
+    public void setStudente(Student studente) {
         this.studente = studente;
     }
 }

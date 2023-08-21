@@ -13,23 +13,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/studenti")
-public class StudenteController {
-    private final StudenteService studenteService;
+public class StudentController {
+    private final StudentService studenteService;
 
     @Autowired
-    public StudenteController(StudenteService studenteService) {
+    public StudentController(StudentService studenteService) {
         this.studenteService = studenteService;
     }
 
     @PostMapping
-    public ResponseEntity<Studente> creaStudente(@RequestBody Studente studenteDTO) {
-        Studente studente = studenteService.createStudente(studenteDTO.getNome(), studenteDTO.getCognome());
+    public ResponseEntity<Student> creaStudente(@RequestBody Student studenteDTO) {
+        Student studente = studenteService.createStudente(studenteDTO.getNome(), studenteDTO.getCognome());
         return ResponseEntity.status(HttpStatus.CREATED).body(studente);
     }
 
     @GetMapping
-    public ResponseEntity<List<Studente>> getAllStudenti() {
-        List<Studente> studenti = studenteService.getAllStudente();
+    public ResponseEntity<List<Student>> getAllStudenti() {
+        List<Student> studenti = studenteService.getAllStudente();
         return ResponseEntity.ok(studenti);
     }
 }

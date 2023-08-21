@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import java.util.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,19 +8,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Esame {
+public class Exam {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
-
     private String materia;
     private int voto;
 
     @ManyToOne
     private Libretto libretto;
 
-    // Costruttori, getter e setter
+    // COSTRUCTOR , GETTER , SETTER
 
     public Integer getId() {
         return id;

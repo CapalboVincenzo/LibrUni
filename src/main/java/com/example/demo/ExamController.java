@@ -14,23 +14,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/esami")
-public class EsamiController {
-    private final EsameService esameService;
+public class ExamController {
+    private final ExamService esameService;
 
     @Autowired
-    public EsamiController(EsameService esameService) {
+    public ExamController(ExamService esameService) {
         this.esameService = esameService;
     }
 
     @PostMapping("/libretti/{librettoId}")
-    public ResponseEntity<Esame> creaEsame(@PathVariable Integer librettoId, @RequestBody Esame esame) {
-        Esame nuovoEsame = esameService.createEsame(librettoId, esame.getMateria(), esame.getVoto());
+    public ResponseEntity<Exam> creaEsame(@PathVariable Integer librettoId, @RequestBody Exam esame) {
+        Exam nuovoEsame = esameService.createEsame(librettoId, esame.getMateria(), esame.getVoto());
         return ResponseEntity.status(HttpStatus.CREATED).body(nuovoEsame);
     }
 
     @GetMapping
-    public ResponseEntity<List<Esame>> getAllEsami() {
-        List<Esame> esami = esameService.getAllEsami();
+    public ResponseEntity<List<Exam>> getAllEsami() {
+        List<Exam> esami = esameService.getAllEsami();
         return ResponseEntity.ok(esami);
     }
 }

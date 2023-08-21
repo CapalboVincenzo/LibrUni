@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Studente {
+public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -14,7 +14,6 @@ public class Studente {
     private String nome;
     private String cognome;
 
-    // Costruttori, getter e setter
 
     public Integer getId() {
         return id;

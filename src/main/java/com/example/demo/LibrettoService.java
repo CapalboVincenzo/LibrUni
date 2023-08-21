@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,10 +8,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class LibrettoService {
     private final LibrettoRepository librettoRepository;
-    private final StudenteService studenteService;
+    private final StudentService studenteService;
 
     @Autowired
-    public LibrettoService(LibrettoRepository librettoRepository, StudenteService studenteService) {
+    public LibrettoService(LibrettoRepository librettoRepository, StudentService studenteService) {
         this.librettoRepository = librettoRepository;
         this.studenteService = studenteService;
     }
@@ -21,7 +20,7 @@ public class LibrettoService {
         if (studenteService.verificaStudenteEsistente(studenteId)) {
             if (!librettoRepository.existsByStudenteId(studenteId)) {
                 Libretto libretto = new Libretto();
-          Studente studente = studenteService.getStudenteById(studenteId);
+          Student studente = studenteService.getStudenteById(studenteId);
                 libretto.setStudente(studente);
                 return librettoRepository.save(libretto);
             } else {
